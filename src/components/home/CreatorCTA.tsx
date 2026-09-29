@@ -3,14 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import SpiralUrl from "@/spiral.svg";
-import ConeUrl from "@/Cone.svg";
-import ConeUrl2 from "@/cone 2.svg";
-import DonutUrl from "@/Donut.svg";
-import CylinderUrl from "@/Cylinder.svg";
-import Cylinder2dUrl from "@/Cylinder 2d.svg";
-import Spiral2dUrl from "@/spiral 2d.svg";
-
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
 const WHITE_FILTER =
@@ -89,7 +81,7 @@ export function CreatorCTA() {
         >
           {/* Top-left big lime spiral */}
           <Ornament
-            src={SpiralUrl}
+            src="/spiral.svg"
             width={385}
             height={385}
             left={-110}
@@ -99,7 +91,7 @@ export function CreatorCTA() {
           />
           {/* Top-left inner white squiggle (flipped X) */}
           <Ornament
-            src={Spiral2dUrl}
+            src="/Spiral 2d.svg"
             width={175}
             height={175}
             left={200}
@@ -109,7 +101,7 @@ export function CreatorCTA() {
           />
           {/* Top-right small lime cone */}
           <Ornament
-            src={ConeUrl}
+            src="/Cone.svg"
             width={189}
             height={189}
             left={1080}
@@ -119,7 +111,7 @@ export function CreatorCTA() {
           />
           {/* Mid-left white cone */}
           <Ornament
-            src={ConeUrl2}
+            src="/Cone 2.svg"
             width={189}
             height={189}
             left={-50}
@@ -129,7 +121,7 @@ export function CreatorCTA() {
           />
           {/* Bottom-left big lime donut */}
           <Ornament
-            src={DonutUrl}
+            src="/Donut.svg"
             width={340}
             height={340}
             left={60}
@@ -139,7 +131,7 @@ export function CreatorCTA() {
           />
           {/* Bottom-right lime squiggle spiral */}
           <Ornament
-            src={SpiralUrl}
+            src="/spiral.svg"
             width={320}
             height={320}
             left={1080}
@@ -149,7 +141,7 @@ export function CreatorCTA() {
           />
           {/* Right big white cylinder */}
           <Ornament
-            src={Cylinder2dUrl}
+            src="/Cylinder 2d.svg"
             width={364}
             height={560}
             left={1235}

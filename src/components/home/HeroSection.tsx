@@ -15,7 +15,6 @@ import {
   ProgressCard,
   StudentStatCard,
 } from "@/components/ui/FloatingCards";
-import heroImage from "@/boy AI.svg";
 
 export function HeroSection() {
   const frame = { width: 1440, height: 1024 };
@@ -239,7 +238,7 @@ export function HeroSection() {
         >
           <div className="relative w-full h-full">
             <Image
-              src={heroImage}
+              src="/boy AI.svg"
               alt="Boy AI character"
               fill
               priority

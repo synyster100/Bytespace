@@ -1,92 +1,48 @@
 import Image from "next/image";
+import { Star } from "lucide-react";
 import type { Course } from "@/data/courses";
 
-function Chip({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="inline-flex items-center justify-center"
-      style={{
-        padding: "6px 14px",
-        background: "rgba(245, 245, 246, 0.85)",
-        borderRadius: 999,
-        color: "#242528",
-        fontFamily: "Satoshi, sans-serif",
-        fontWeight: 400,
-        fontSize: 12,
-        lineHeight: "22px",
-        backdropFilter: "blur(4px)",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function StarHalf({ size = 20 }: { size?: number }) {
+function SignalIcon() {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
       fill="none"
       aria-hidden
     >
-      <defs>
-        <linearGradient id="halfstar" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="50%" stopColor="#CDD0D7" />
-          <stop offset="50%" stopColor="#CDD0D7" />
-        </linearGradient>
-      </defs>
       <path
-        d="M12 3.5 14.9 9.45l6.58.95-4.76 4.65 1.12 6.57L12 18.3l-5.84 3.07 1.12-6.57L2.52 10.4l6.58-.95L12 3.5Z"
-        stroke="#CDD0D7"
-        strokeWidth="1.2"
+        d="M3.75 13.125L10 6.875L16.25 13.125M3.75 16.25L10 10L16.25 16.25M3.75 10L10 3.75L16.25 10"
+        stroke="#4B4C53"
+        strokeWidth="1.8"
+        strokeLinecap="round"
         strokeLinejoin="round"
-        fill="url(#halfstar)"
       />
     </svg>
   );
 }
 
-function LevelPill({ label }: { label: string }) {
+function Chip({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="inline-flex items-center"
+      className="inline-flex items-center justify-center flex-shrink-0"
       style={{
-        padding: "6px 14px",
-        height: 36,
-        border: "1px solid #CED0D3",
-        borderRadius: 999,
-        background: "#FFFFFF",
-        gap: 8,
+        padding: "6px 12px",
+        background: "rgba(246, 246, 246, 0.6)",
+        backdropFilter: "blur(4px)",
+        borderRadius: 24,
       }}
     >
-      <svg
-        width={20}
-        height={20}
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden
-      >
-        <path
-          d="M4 19h2M7 17h13M4 14h2M7 12h13M4 9h2M7 7h13"
-          stroke="#242528"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          transform="translate(-2 0) scale(0.95)"
-        />
-        <rect x="2" y="3" width="4" height="2" rx="1" fill="#242528" opacity="0.7" />
-      </svg>
       <span
         style={{
           fontFamily: "Satoshi, sans-serif",
-          fontSize: 14,
-          lineHeight: "22px",
-          color: "#242528",
+          fontWeight: 500,
+          fontSize: 12,
+          lineHeight: "20px",
+          color: "#4F4F4F",
         }}
       >
-        {label}
+        {children}
       </span>
     </div>
   );
@@ -99,21 +55,22 @@ export function CourseCard({ course }: { course: Course }) {
       style={{
         width: "100%",
         maxWidth: 440,
-        height: 460,
+        height: 440,
         border: "1px solid #CED0D3",
         borderRadius: 24,
         overflow: "hidden",
         padding: 12,
-        gap: 24,
+        gap: 25,
+        boxSizing: "border-box",
       }}
     >
-      {/* Cover 416x240 with top chips */}
+      {/* Cover with overlay glass chips */}
       <div
-        className="relative"
+        className="relative flex-shrink-0"
         style={{ width: "100%", height: 240, borderRadius: 16, overflow: "hidden" }}
       >
         <Image
-          src={course.coverImage}
+          src={course.image}
           alt={course.title}
           fill
           sizes="416px"
@@ -121,7 +78,7 @@ export function CourseCard({ course }: { course: Course }) {
           priority={false}
         />
         <div
-          className="absolute flex flex-row items-center"
+          className="absolute flex flex-row items-start"
           style={{ left: 14, bottom: 14, gap: 12 }}
         >
           <Chip>{course.lessons} Lessons</Chip>
@@ -130,15 +87,15 @@ export function CourseCard({ course }: { course: Course }) {
         </div>
       </div>
 
-      {/* Text body area */}
+      {/* Text body */}
       <div
         className="flex flex-col items-start"
         style={{ width: "100%", padding: "0 4px", gap: 12 }}
       >
-        {/* Row 1: Title + star */}
+        {/* Row A: Title + rating (justify-between, align-items center, gap 8) */}
         <div
-          className="flex flex-row items-center justify-between"
-          style={{ width: "100%" }}
+          className="flex flex-row items-center justify-between w-full"
+          style={{ marginBottom: -4 }}
         >
           <h3
             className="m-0 p-0 line-clamp-1"
@@ -155,37 +112,53 @@ export function CourseCard({ course }: { course: Course }) {
           </h3>
           <div
             className="flex flex-row items-center flex-shrink-0"
-            style={{ gap: 6 }}
+            style={{ width: 51, height: 28, gap: 0 }}
           >
             <span
               style={{
+                width: 27,
+                height: 28,
                 fontFamily: "Satoshi, sans-serif",
-                fontSize: 20,
+                fontWeight: 500,
+                fontSize: 18,
                 lineHeight: "28px",
-                fontWeight: 400,
-                color: "#242528",
+                color: "#4F4F4F",
+                flex: "none",
+                order: 1,
+                paddingLeft: -1,
               }}
             >
               {course.rating}
             </span>
-            <StarHalf size={24} />
+            <Star
+              aria-hidden
+              style={{
+                width: 18,
+                height: 18,
+                color: "#CED0D3",
+                fill: "#CED0D3",
+                flex: "none",
+                order: 1,
+              }}
+            />
           </div>
         </div>
 
-        {/* Row 2: by creator */}
+        {/* Row B: Byline (by + creator blue) */}
         <p
           className="m-0 p-0"
           style={{
             fontFamily: "Satoshi, sans-serif",
-            fontSize: 14,
-            lineHeight: "22px",
-            color: "#003BE2",
+            fontWeight: 400,
+            fontSize: 12,
+            lineHeight: "20px",
+            color: "#4F4F4F",
           }}
         >
-          by {course.creator}
+          by <span style={{ color: "#003BE2" }}>{course.creator}</span>
         </p>
 
-        {/* Short course description */}
+        {/* Row C: Description fill (line-clamp-2)
         <p
           className="m-0 p-0 line-clamp-2"
           style={{
@@ -196,85 +169,137 @@ export function CourseCard({ course }: { course: Course }) {
           }}
         >
           {course.description}
-        </p>
+        </p> */}
 
-        {/* Row 3: Level pill + avatars stack */}
+        {/* Row D: Level pill (Growth signal design) + avatar stack inline gap 12 */}
         <div
-          className="flex flex-row items-center justify-between"
-          style={{ width: "100%" }}
+          className="flex flex-row items-center"
+          style={{ width: "100%", gap: 12 }}
         >
-          <LevelPill label={course.level} />
-          <div className="flex items-center" style={{ gap: 0 }}>
-            <div className="flex" style={{}}>
-              {course.avatars.map((src, i) => (
-                <div
-                  key={i}
-                  className="rounded-full"
-                  style={{
-                    width: 36,
-                    height: 36,
-                    marginLeft: i === 0 ? 0 : -10,
-                    border: "2px solid #FFFFFF",
-                    overflow: "hidden",
-                    background: "#F5F5F6",
-                    position: "relative",
-                    zIndex: 5 - i,
-                  }}
-                >
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    sizes="36px"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-            <div
-              className="rounded-full flex items-center justify-center"
+          <div
+            className="inline-flex flex-row justify-center items-center flex-shrink-0"
+            style={{
+              padding: "6px 12px",
+              gap: 4,
+              background: "#F5F5F6",
+              borderRadius: 24,
+              height: 32,
+              boxSizing: "border-box",
+            }}
+          >
+            <SignalIcon />
+            <span
               style={{
-                width: 36,
-                height: 36,
-                marginLeft: -10,
-                border: "2px solid #FFFFFF",
-                background: "#D4FB20",
-                color: "#242528",
                 fontFamily: "Satoshi, sans-serif",
-                fontWeight: 700,
+                fontWeight: 500,
                 fontSize: 12,
+                lineHeight: "20px",
+                color: "#4B4C53",
               }}
             >
-              {course.extraCount}
+              {course.level}
+            </span>
+          </div>
+
+          <div
+            className="flex flex-row items-start"
+            style={{ padding: 0, flexShrink: 0 }}
+          >
+            {course.avatars.map((src, i) => (
+              <div
+                key={i}
+                className="rounded-full overflow-hidden bg-[#F5F5F6] border-2 border-white"
+                style={{
+                  width: 32,
+                  height: 32,
+                  margin: i === 0 ? "0 -8px 0 0" : "0 -8px",
+                  flex: "none",
+                  order: i,
+                  position: "relative",
+                  boxSizing: "border-box",
+                }}
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="32px"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+            {/* Black 32×32 counter pill (Growth 26+ style) */}
+            <div
+              className="relative rounded-full"
+              style={{
+                width: 32,
+                height: 32,
+                margin: "0 -8px",
+                flex: "none",
+                order: course.avatars.length,
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  width: 32,
+                  height: 32,
+                  left: 0,
+                  top: 0,
+                  background: "#D4FB20",
+                  borderRadius: "9999px",
+                }}
+              />
+              <span
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "fit-content",
+                  height: 20,
+                  fontFamily: "Satoshi, sans-serif",
+                  fontWeight: 500,
+                  fontSize: 12,
+                  lineHeight: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                  color: "#000000",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {course.extraCount}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Row 4: Price */}
+        {/* Row E: Price row (items-end) */}
         <div
           className="flex flex-row items-end"
           style={{ width: "100%", paddingTop: 4 }}
         >
-          <span
+          <strong
             style={{
               fontFamily: "Poppins, sans-serif",
-              fontSize: 24,
-              lineHeight: "32px",
+              fontSize: 20,
+              lineHeight: "28px",
               fontWeight: 700,
               color: "#003BE2",
               letterSpacing: "-0.01em",
             }}
           >
             ${course.price}
-          </span>
+          </strong>
           <span
             style={{
               fontFamily: "Satoshi, sans-serif",
-              fontSize: 14,
-              lineHeight: "22px",
+              fontSize: 12,
+              lineHeight: "20px",
               fontWeight: 400,
-              color: "#242528",
-              marginBottom: 4,
+              color: "#4F4F4F",
+              marginBottom: 1,
               marginLeft: 2,
             }}
           >

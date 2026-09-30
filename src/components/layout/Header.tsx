@@ -68,14 +68,14 @@ export function Header() {
             }}
           >
             <Link
-              href="/#signin"
+              href="/signin"
               className="text-body-m transition-colors hover:opacity-80"
               style={{ color: "#F5F5F6", lineHeight: "150%" }}
             >
               Sign In
             </Link>
             <Link
-              href="/#joinus"
+              href="/signup"
               className="text-body-m transition-colors hover:opacity-80"
               style={{ color: "#F5F5F6", lineHeight: "150%" }}
             >
@@ -122,14 +122,14 @@ export function Header() {
             </nav>
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="/#signin"
+                href="/signin"
                 onClick={() => setOpen(false)}
                 style={{ color: "#F5F5F6" }}
               >
                 Sign In
               </Link>
               <Link
-                href="/#joinus"
+                href="/signup"
                 onClick={() => setOpen(false)}
                 style={{ color: "#F5F5F6" }}
               >

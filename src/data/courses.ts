@@ -1,7 +1,9 @@
+
 export interface Course {
   id: string;
   title: string;
   category: string;
+  description: string;
   rating: number;
   price: number;
   priceSuffix: string;
@@ -34,11 +36,11 @@ export const courses: Course[] = [
     id: "1",
     title: "Learn Figma from Basic",
     category: "UI/UX Design",
+    description: "Master the fundamentals of Figma and create stunning UI designs from scratch.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=figma%20ui%20ux%20design%20workspace%20with%20modern%20dashboard%20mockup%20creative%20design%20tools%20screen&image_size=landscape_4_3",
+    image: "/frame.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",
@@ -51,11 +53,11 @@ export const courses: Course[] = [
     id: "2",
     title: "Build Digital Asset",
     category: "Design",
+    description: "Learn to create and monetize digital assets for modern design marketplaces.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=creative%20digital%20asset%20design%20interface%20nft%20mockup%20artwork%20designer%20workspace&image_size=landscape_4_3",
+    image: "/frame2.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",
@@ -68,11 +70,11 @@ export const courses: Course[] = [
     id: "3",
     title: "the Power of Big Data",
     category: "Data Science",
+    description: "Unlock insights from massive datasets using modern data analysis techniques.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=big%20data%20analytics%20visualization%20code%20editor%20charts%20graphs%20dashboard%20dark%20theme&image_size=landscape_4_3",
+    image: "/frame3.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",
@@ -85,11 +87,11 @@ export const courses: Course[] = [
     id: "4",
     title: "Balancing Productivity an...",
     category: "Productivity",
+    description: "Strategies and tools to maximize output while maintaining a healthy work-life balance.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=minimal%20productivity%20workspace%20laptop%20notebook%20planner%20coffee%20desk%20flat%20lay&image_size=landscape_4_3",
+    image: "/frame.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",
@@ -102,11 +104,11 @@ export const courses: Course[] = [
     id: "5",
     title: "Mastering Money Manage...",
     category: "Finance",
+    description: "Take control of your finances with proven budgeting and investment strategies.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=financial%20chart%20money%20management%20investment%20graph%20business%20analytics%20screen&image_size=landscape_4_3",
+    image: "/frame2.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",
@@ -119,11 +121,11 @@ export const courses: Course[] = [
     id: "6",
     title: "From Idea to Startup Succ...",
     category: "Entrepreneurship",
+    description: "Transform your business idea into a thriving startup with step-by-step guidance.",
     rating: 4.5,
     price: 25,
     priceSuffix: "/lifetime",
-    image:
-      "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=startup%20team%20meeting%20entrepreneurship%20office%20collaboration%20whiteboard%20business&image_size=landscape_4_3",
+    image: "/frame3.png",
     creator: "purepearl studio",
     lessons: 17,
     duration: "2 hours 16 mins",

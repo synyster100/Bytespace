@@ -3,22 +3,68 @@
 import Image from "next/image";
 import { Search } from "lucide-react";
 import {
-  LimeBlob,
-  WhiteRing,
-  WhiteTriangle,
-  WhiteSquiggle,
-  LimeRing,
-  LimeSquiggle,
-} from "@/components/ui/Decorations";
-import {
   MiniCourseCard,
   ProgressCard,
   StudentStatCard,
 } from "@/components/ui/FloatingCards";
-import heroImage from "@/boy AI.svg";
+
+const LIME_FILTER =
+  "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
+
+const WHITE_FILTER =
+  "saturate(0) sepia(0) brightness(100) contrast(100)";
+
+const HERO_DROP_SHADOW =
+  "drop-shadow(51.0381px 72.9116px 72px rgba(0,0,0,0.13)) drop-shadow(37.1223px 53.0318px 56px rgba(0,0,0,0.105219)) drop-shadow(25.8381px 36.9115px 36px rgba(0,0,0,0.1)) drop-shadow(16.9463px 24.2089px 24px rgba(0,0,0,0.09)) drop-shadow(10.2076px 14.5823px 16.0875px rgba(0,0,0,0.08)) drop-shadow(5.38293px 7.6899px 9.57129px rgba(0,0,0,0.07)) drop-shadow(2.23292px 3.18988px 5.72344px rgba(0,0,0,0.06)) drop-shadow(0.518356px 0.740509px 3.03574px rgba(0,0,0,0.04))";
+
+function Ornament({
+  src,
+  x,
+  y,
+  width,
+  height,
+  filter,
+  transform,
+  aria = true,
+}: {
+  src: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  filter?: string;
+  transform?: string;
+  aria?: boolean;
+}) {
+  return (
+    <div
+      aria-hidden={aria}
+      className="pointer-events-none absolute"
+      style={{
+        width,
+        height,
+        left: x,
+        top: y,
+        transform,
+      }}
+    >
+      <div className="relative w-full h-full">
+        <Image
+          src={src}
+          alt=""
+          fill
+          sizes={`${width}px`}
+          className="object-contain"
+          style={filter ? { filter } : undefined}
+          priority={false}
+        />
+      </div>
+    </div>
+  );
+}
 
 export function HeroSection() {
-  const frame = { width: 1440, height: 1024 };
+  const frame = { width: 1440, height: 900 };
 
   return (
     <section
@@ -35,78 +81,78 @@ export function HeroSection() {
           aria-hidden
         />
 
-        {/* Decorative shapes - absolute positioned within frame */}
+        {/* Decorative SVG ornaments - absolute positioned using public SVGs */}
         <div
           className="pointer-events-none absolute inset-0 overflow-hidden"
           aria-hidden
         >
-          {/* Left side decorations */}
-          <LimeBlob
-            className="absolute"
-            style={{ top: -10, left: -59 }}
-            size={222}
-          />
-          <WhiteRing
-            className="absolute opacity-90"
-            style={{ left: 28, top: 791 }}
-            size={188}
-            strokeWidth={12}
-          />
-          <WhiteSquiggle
-            className="absolute opacity-90"
-            style={{ left: 87, top: 606 }}
-            size={90}
+          {/* 1. Lime spiral top-left (330×330 at -59, 142) */}
+          <Ornament
+            src="/spiral.svg"
+            x={-135}
+            y={70}
+            width={400}
+            height={400}
+            filter={LIME_FILTER}
           />
 
-          {/* Right side decorations */}
-          <LimeBlob
-            className="absolute opacity-90 rotate-45"
-            style={{ top: 0, left: 1130 }}
-            size={222}
-          />
-          <WhiteTriangle
-            className="absolute opacity-95"
-            style={{ left: 1158, top: 606 }}
-            size={90}
-          />
-          <LimeRing
-            className="absolute opacity-95"
-            style={{ left: 1160, top: 199 }}
-            size={175}
-            strokeWidth={10}
-          />
-          <LimeSquiggle
-            className="absolute opacity-90"
-            style={{ left: 1157, top: 791 }}
-            size={180}
-          />
-          <WhiteSquiggle
-            className="absolute opacity-90"
-            style={{ left: 1135, top: 545 }}
-            size={120}
+          {/* 3. White spiral 2d left-mid, above boy (175×175 at 100, 420) */}
+          <Ornament
+            src="/Spiral 2d.svg"
+            x={180}
+            y={360}
+            width={175}
+            height={175}
+            filter={WHITE_FILTER}
           />
 
-          {/* 3D ornamental shapes visible in reference */}
-          <LimeBlob
-            className="absolute"
-            style={{ top: -32, right: -16, opacity: 0.95, transform: "rotate(35deg)" }}
-            size={260}
+          {/* 4. White spiral 2d right-bottom (185×185 at 1155, 790) */}
+          <Ornament
+            src="/Spiral 2d.svg"
+            x={1135}
+            y={560}
+            width={355}
+            height={345}
+            filter={WHITE_FILTER}
+            transform="scaleX(-1) rotate(45deg)"
           />
-          <LimeSquiggle
-            className="absolute opacity-90"
-            style={{ left: "22%", top: "5%" }}
-            size={70}
+
+          {/* 5. White donut (188×188 at 28, 791) */}
+          
+
+         
+
+          {/* 7. Lime cylinder top-right (370×370 at 1205, 220) */}
+          <Ornament
+            src="/Cylinder.svg"
+            x={1215}
+            y={108}
+            width={370}
+            height={370}
+            filter={LIME_FILTER}
+          />
+
+          
+
+          {/* 9. White cone right-mid small (188×188 at 1180, 470) */}
+          <Ornament
+            src="/Cone.svg"
+            x={1105}
+            y={350}
+            width={175}
+            height={175}
+            filter={WHITE_FILTER}
           />
         </div>
 
-        {/* Hero text content (width 1200px, centered horizontally within 1440 frame) */}
+        {/* Hero text content (width 1200px × 345, gap 60, top 169 — spec line 312-315) */}
         <div
           className="absolute flex flex-col items-center"
           style={{
             width: 1200,
-            height: 245,
+            height: 345,
             left: (frame.width - 1200) / 2,
-            top: 100,
+            top: 50,
             gap: 60,
           }}
         >
@@ -210,36 +256,46 @@ export function HeroSection() {
           </form>
         </div>
 
-        {/* Lime ring behind person (Ellipse 7) - width 1149x1149, border 320px solid #CBFC01 */}
+        {/* Lime ring behind person (Ellipse 7) - 1149x1149, 320px #CBFC01 border, top 582 (spec line 297) */}
         <div
           aria-hidden
           className="pointer-events-none absolute rounded-full"
           style={{
             width: 1149,
             height: 1149,
-            left: (frame.width - 1149) / 2,
-            top: 560,
+            left: "calc(50% - 1149px/2 - 0.5px)",
+            top: 460,
             boxSizing: "border-box",
             border: "320px solid #CBFC01",
             background: "transparent",
+            zIndex: 0,
           }}
         />
+        <Ornament
+            src="/Donut.svg"
+            x={8}
+            y={570}
+            width={340}
+            height={340}
+            filter={WHITE_FILTER}
+            transform="rotate(5deg)"
+          />
 
-        {/* Main Hero Image */}
+        {/* Main Hero Image — spec lines 750-759: 578×541 centered (50% - 578/2), top 512 */}
         <div
           className="absolute"
           style={{
-            width: 578,
-            height: 541,
-            left: (frame.width - 460) / 2,
-            top: 485,
-            filter:
-              "drop-shadow(51.0381px 72.9116px 72px rgba(0,0,0,0.13)) drop-shadow(37.1223px 53.0318px 56px rgba(0,0,0,0.105219)) drop-shadow(25.8381px 36.9115px 36px rgba(0,0,0,0.1)) drop-shadow(16.9463px 24.2089px 24px rgba(0,0,0,0.09)) drop-shadow(10.2076px 14.5823px 16.0875px rgba(0,0,0,0.08)) drop-shadow(5.38293px 7.6899px 9.57129px rgba(0,0,0,0.07)) drop-shadow(2.23292px 3.18988px 5.72344px rgba(0,0,0,0.06)) drop-shadow(0.518356px 0.740509px 3.03574px rgba(0,0,0,0.04))",
+            width: 568,
+            height: 531,
+            left: "calc(50% - 480px/2)",
+            top: 370,
+            filter: HERO_DROP_SHADOW,
+            background: "transparent",
           }}
         >
           <div className="relative w-full h-full">
             <Image
-              src={heroImage}
+              src="/boy AI.svg"
               alt="Boy AI character"
               fill
               priority
@@ -249,28 +305,33 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Floating Cards - exact coordinates from 1440p spec */}
+        {/* Floating Cards - exact coordinates from Hero_Fr spec */}
         <div className="pointer-events-none absolute inset-0">
-          {/* UI/UX Design card - left 404 top 639 */}
+          {/* UI/UX Design card - 208×70 at (404, 639) — spec lines 1620-1639 */}
           <div
             className="pointer-events-auto absolute"
-            style={{ left: 390, top: 615 }}
+            style={{ left: 395, top: 505 }}
           >
-            <MiniCourseCard />
+            <MiniCourseCard
+              width={200}
+              height={62}
+              padding={12}
+              borderRadius={16}
+            />
           </div>
 
-          {/* Learning Progress - left 842 top 651 */}
+          {/* Learning Progress - 232×131 at (842, 651) — spec lines 770-775 */}
           <div
             className="pointer-events-auto absolute"
-            style={{ left: 850, top: 631 }}
+            style={{ left: 835, top: 516 }}
           >
             <ProgressCard value={55} />
           </div>
 
-          {/* Happy Students - left 328 top 837 */}
+          {/* Happy Students - 258×121 at (328, 837) — spec lines 898-901 */}
           <div
             className="pointer-events-auto absolute"
-            style={{ left: 328, top: 837 }}
+            style={{ left: 312, top: 705 }}
           >
             <StudentStatCard />
           </div>

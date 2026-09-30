@@ -396,16 +396,20 @@ export function GrowthSection() {
               >
                 <CourseCard
                   course={{
+                    id: "growth-hero-1",
                     image: "/frame.png",
                     title: "Learn Figma from Basic",
-                    lessons: "17",
+                    category: "UI/UX Design",
+                    description:
+                      "Master the fundamentals of Figma and create stunning UI designs from scratch.",
+                    lessons: 17,
                     duration: "2 hours 16 mins",
-                    comments: "59 Comments",
+                    comments: 59,
                     creator: "purepearl studio",
                     level: "Beginner",
                     avatars: AVATAR_SET_A,
-                    extraStudents: 26,
-                    price: "25",
+                    extraCount: "26+",
+                    price: 25,
                     priceSuffix: "/lifetime",
                     rating: 4.5,
                   }}

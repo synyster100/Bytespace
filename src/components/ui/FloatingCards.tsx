@@ -8,6 +8,10 @@ type MiniCourseCardProps = {
   image?: string;
   courses?: number;
   students?: number;
+  width?: number;
+  height?: number;
+  padding?: number | string;
+  borderRadius?: number | string;
 };
 
 export function MiniCourseCard({
@@ -17,6 +21,10 @@ export function MiniCourseCard({
   image,
   courses = 200,
   students = 1000,
+  width = 218,
+  height = 80,
+  padding = 18,
+  borderRadius = 16,
 }: MiniCourseCardProps) {
   const useHeroDesign = price === undefined && !image;
 
@@ -68,15 +76,17 @@ export function MiniCourseCard({
     <div
       className={["bg-white rounded-card", className].join(" ")}
       style={{
-        width: 218,
-        height: 80,
-        padding: 18,
+        width,
+        height,
+        padding,
+        borderRadius,
         gap: 6,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
         backdropFilter: "blur(10px)",
+        boxSizing: "border-box",
       }}
     >
       <p

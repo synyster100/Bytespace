@@ -7,6 +7,7 @@ import {
   ProgressCard,
   StudentStatCard,
 } from "@/components/ui/FloatingCards";
+import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
@@ -70,12 +71,8 @@ export function HeroSection() {
     <section
       id="home"
       className="relative overflow-hidden bg-brand-blue text-white"
-      style={{ minHeight: frame.height }}
     >
-      <div
-        className="relative mx-auto"
-        style={{ width: "100%", maxWidth: frame.width, height: frame.height }}
-      >
+      <ResponsiveFrame designHeight={frame.height}>
         <div
           className="grid-bg absolute inset-0 pointer-events-none"
           aria-hidden
@@ -336,7 +333,7 @@ export function HeroSection() {
             <StudentStatCard />
           </div>
         </div>
-      </div>
+      </ResponsiveFrame>
     </section>
   );
 }

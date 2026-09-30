@@ -2,6 +2,7 @@
 import { CourseCard } from "@/components/home/CourseCard";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
@@ -82,10 +83,7 @@ export function GrowthSection() {
       className="relative overflow-hidden"
       style={{ background: "#FAFAFA", width: "100%" }}
     >
-      <div
-        className="relative mx-auto"
-        style={{ width: "100%", maxWidth: 1440, height: 1460 }}
-      >
+      <ResponsiveFrame designHeight={1460}>
         {/* Background radial gradients (5 ellipses, each 1137/672 wide, blur 20) */}
         <div
           aria-hidden
@@ -1151,7 +1149,7 @@ export function GrowthSection() {
             </div>
           </div>
         </div>
-      </div>
+      </ResponsiveFrame>
     </section>
   );
 }

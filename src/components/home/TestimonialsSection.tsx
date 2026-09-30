@@ -1,13 +1,11 @@
 import { testimonials } from "@/data/testimonials";
 import { TestimonialCard } from "./TestimonialCard";
+import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
 
 export function TestimonialsSection() {
   return (
     <section className="relative overflow-hidden" style={{ background: "#FAFAFA" }}>
-      <div
-        className="relative mx-auto"
-        style={{ width: "100%", maxWidth: 1440, height: 784 }}
-      >
+      <ResponsiveFrame designHeight={784}>
         {/* Ellipse 11 — Lime gradient glow right-top, 1137, blur 20 */}
         <div
           aria-hidden
@@ -114,7 +112,7 @@ export function TestimonialsSection() {
             ))}
           </div>
         </div>
-      </div>
+      </ResponsiveFrame>
     </section>
   );
 }

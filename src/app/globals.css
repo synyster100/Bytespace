@@ -46,4 +46,19 @@ a {
     background-size: 120px 120px;
     opacity: 0.12;
   }
+
+  .rf-outer {
+    container-type: inline-size;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    overflow: hidden;
+  }
+
+  .rf-inner {
+    position: relative;
+    width: 1440px;
+    transform-origin: top center;
+    transform: scale(min(1, 100cqw / 1440));
+  }
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AuthMiniCourseCard } from "@/components/auth/AuthMiniCourseCard";
 import { AuthHappyStudentsCard } from "@/components/auth/AuthHappyStudentsCard";
+import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12) drop-shadow(0 0 2px #D4FB20)";
@@ -63,18 +64,10 @@ export function SignupPage() {
       className="relative overflow-hidden"
       style={{
         width: "100%",
-        minHeight: frame.height,
         background: "#003BE2",
       }}
     >
-      <div
-        className="relative mx-auto"
-        style={{
-          width: "100%",
-          maxWidth: frame.width,
-          height: frame.height,
-        }}
-      >
+      <ResponsiveFrame designHeight={frame.height}>
         <div
           className="grid-bg absolute inset-0 pointer-events-none"
           aria-hidden
@@ -505,7 +498,7 @@ export function SignupPage() {
             filter={LIME_FILTER}
           />
         </div>
-      </div>
+      </ResponsiveFrame>
     </section>
   );
 }

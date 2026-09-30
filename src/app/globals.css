@@ -48,7 +48,7 @@ a {
   }
 
   .rf-outer {
-    container-type: inline-size;
+    position: relative;
     width: 100%;
     max-width: 1440px;
     margin-inline: auto;
@@ -57,8 +57,9 @@ a {
 
   .rf-inner {
     position: relative;
-    width: 1440px;
+    /* SSR-friendly fallback scale (capped at 1440, minimum handled post-paint via JS observer). */
+    transform: scale(min(1, 100vw / 1440));
     transform-origin: top center;
-    transform: scale(min(1, 100cqw / 1440));
+    will-change: transform;
   }
 }

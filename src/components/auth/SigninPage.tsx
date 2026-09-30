@@ -6,10 +6,10 @@ import { AuthMiniCourseCard } from "@/components/auth/AuthMiniCourseCard";
 import { AuthHappyStudentsCard } from "@/components/auth/AuthHappyStudentsCard";
 
 const LIME_FILTER =
-  "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
+  "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12) drop-shadow(0 0 2px #D4FB20)";
 
 const WHITE_FILTER =
-  "saturate(0) sepia(0) brightness(100) contrast(100)";
+  "saturate(0) sepia(0) brightness(2) contrast(0.9) drop-shadow(0 0 2px #ffffffff) drop-shadow(0 0 2px #aca6a6ff)";
 
 function Ornament({
   src,
@@ -186,7 +186,7 @@ export function SigninPage() {
           className="absolute"
           style={{ width: 373, height: 384, left: 122, top: 394, zIndex: 2 }}
         >
-          <AuthMiniCourseCard title="Build Digital Asset" coverBg="#3B3F55" />
+          <AuthMiniCourseCard title="Build Digital Asset" useFrame2={true} />
         </div>
         <div
           className="absolute"
@@ -194,7 +194,7 @@ export function SigninPage() {
         >
           <AuthMiniCourseCard
             title="the Power of Big Data"
-            coverBg="#443131"
+            useFrame2={false}
           />
         </div>
 
@@ -598,7 +598,7 @@ export function SigninPage() {
             y={615}
             width={180}
             height={180}
-            filter="saturate(0) sepia(0) brightness(2) contrast(0.9) drop-shadow(0 0 2px #ffffffff) drop-shadow(0 0 2px #aca6a6ff)"
+            filter={WHITE_FILTER}
             transform="scaleX(-1)rotate(0deg) "
           />
 

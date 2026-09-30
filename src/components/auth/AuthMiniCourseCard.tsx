@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 type AuthMiniCourseCardProps = {
   title: string;
   coverBg?: string;
-  frameImage?: string;
+  useFrame2?: boolean;
 };
 
 function SignalIcon() {
@@ -30,7 +30,7 @@ function SignalIcon() {
 export function AuthMiniCourseCard({
   title,
   coverBg = "#443131",
-  frameImage,
+  useFrame2 = false,
 }: AuthMiniCourseCardProps) {
   return (
     <div
@@ -56,15 +56,13 @@ export function AuthMiniCourseCard({
           overflow: "hidden",
         }}
       >
-        {frameImage && (
-          <Image
-            src={frameImage}
-            alt=""
-            fill
-            sizes="341px"
-            className="object-cover"
-          />
-        )}
+        <Image
+          src={useFrame2 ? "/frame2.png" : "/frame3.png"}
+          alt=""
+          fill
+          sizes="341px"
+          className="object-cover"
+        />
         <div
           style={{
             position: "absolute",

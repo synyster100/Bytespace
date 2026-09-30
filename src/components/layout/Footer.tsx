@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
+import { ViewportFitFrame } from "@/components/ui/ViewportFitFrame";
 
 const BROWSE_LINKS = [
   "Featured Courses",
@@ -35,13 +36,10 @@ export function Footer() {
 
   return (
     <footer
-      className="relative bg-white"
-      style={{ borderTop: "1px solid #CED0D3" }}
+      className="relative bg-white w-full mx-auto"
+      style={{ borderTop: "1px solid #CED0D3", width: "100%" }}
     >
-      <div
-        className="relative mx-auto"
-        style={{ width: "100%", maxWidth: 1440, height: 525 }}
-      >
+      <ViewportFitFrame designWidth={1440} designHeight={525}>
         <div
           className="absolute flex flex-col items-start"
           style={{
@@ -296,7 +294,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </ViewportFitFrame>
     </footer>
   );
 }

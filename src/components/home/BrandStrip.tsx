@@ -1,3 +1,5 @@
+import { ViewportFitFrame } from "@/components/ui/ViewportFitFrame";
+
 const GRAY = "#82868E";
 
 type Icon = (props: { size: number }) => JSX.Element;
@@ -156,25 +158,17 @@ function Logo({ Icon }: { Icon: Icon }) {
 export function BrandStrip() {
   return (
     <section
-      className="relative"
-      style={{
-        background: "#F5F5F6",
-        width: "100%",
-      }}
+      className="relative w-full mx-auto"
+      style={{ background: "#F5F5F6" }}
     >
-      <div
-        className="relative mx-auto flex items-center"
-        style={{
-          width: "100%",
-          maxWidth: 1440,
-          height: 240,
-        }}
-      >
+      <ViewportFitFrame designWidth={1440} designHeight={240}>
         <ul
-          className="flex flex-row items-center list-none m-0 p-0"
+          className="absolute flex flex-row items-center list-none m-0 p-0"
           style={{
             width: 1200,
-            marginInline: "auto",
+            height: 44,
+            left: 120,
+            top: 98,
             justifyContent: "space-between",
           }}
         >
@@ -188,7 +182,7 @@ export function BrandStrip() {
             </li>
           ))}
         </ul>
-      </div>
+      </ViewportFitFrame>
     </section>
   );
 }

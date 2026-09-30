@@ -7,6 +7,10 @@ import {
   ProgressCard,
   StudentStatCard,
 } from "@/components/ui/FloatingCards";
+import { ViewportFitFrame } from "@/components/ui/ViewportFitFrame";
+
+const DESIGN_W = 1440;
+const DESIGN_H = 900;
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
@@ -64,29 +68,26 @@ function Ornament({
 }
 
 export function HeroSection() {
-  const frame = { width: 1440, height: 900 };
-
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-brand-blue text-white"
-      style={{ minHeight: frame.height }}
+      className="relative overflow-hidden bg-brand-blue text-white w-full mx-auto"
     >
-      <div
-        className="relative mx-auto"
-        style={{ width: "100%", maxWidth: frame.width, height: frame.height }}
+      <ViewportFitFrame
+        designWidth={DESIGN_W}
+        designHeight={DESIGN_H}
+        fitHeight
+        ssrHeight="clamp(560px, 62.5vw, 900px)"
       >
         <div
           className="grid-bg absolute inset-0 pointer-events-none"
           aria-hidden
         />
 
-        {/* Decorative SVG ornaments - absolute positioned using public SVGs */}
         <div
           className="pointer-events-none absolute inset-0 overflow-hidden"
           aria-hidden
         >
-          {/* 1. Lime spiral top-left (330×330 at -59, 142) */}
           <Ornament
             src="/spiral.svg"
             x={-135}
@@ -96,7 +97,6 @@ export function HeroSection() {
             filter={LIME_FILTER}
           />
 
-          {/* 3. White spiral 2d left-mid, above boy (175×175 at 100, 420) */}
           <Ornament
             src="/Spiral 2d.svg"
             x={180}
@@ -106,7 +106,6 @@ export function HeroSection() {
             filter={WHITE_FILTER}
           />
 
-          {/* 4. White spiral 2d right-bottom (185×185 at 1155, 790) */}
           <Ornament
             src="/Spiral 2d.svg"
             x={1135}
@@ -117,12 +116,6 @@ export function HeroSection() {
             transform="scaleX(-1) rotate(45deg)"
           />
 
-          {/* 5. White donut (188×188 at 28, 791) */}
-          
-
-         
-
-          {/* 7. Lime cylinder top-right (370×370 at 1205, 220) */}
           <Ornament
             src="/Cylinder.svg"
             x={1215}
@@ -132,9 +125,6 @@ export function HeroSection() {
             filter={LIME_FILTER}
           />
 
-          
-
-          {/* 9. White cone right-mid small (188×188 at 1180, 470) */}
           <Ornament
             src="/Cone.svg"
             x={1105}
@@ -143,21 +133,43 @@ export function HeroSection() {
             height={175}
             filter={WHITE_FILTER}
           />
+
+          <Ornament
+            src="/Donut.svg"
+            x={8}
+            y={570}
+            width={340}
+            height={340}
+            filter={WHITE_FILTER}
+            transform="rotate(5deg)"
+          />
         </div>
 
-        {/* Hero text content (width 1200px × 345, gap 60, top 169 — spec line 312-315) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            width: 1149,
+            height: 1149,
+            left: "calc(50% - 1149px/2 - 0.5px)",
+            top: 460,
+            boxSizing: "border-box",
+            border: "320px solid #CBFC01",
+            background: "transparent",
+          }}
+        />
+
         <div
           className="absolute flex flex-col items-center"
           style={{
-            width: 1200,
-            height: 345,
-            left: (frame.width - 1200) / 2,
+            width: 1240,
+            height: 395,
+            left: (DESIGN_W - 1240) / 2,
             top: 50,
-            gap: 60,
+            gap: 40,
           }}
         >
-          {/* Heading + Copy */}
-          <div
+            <div
             className="relative text-center flex flex-col items-center"
             style={{ width: 935, height: 233, gap: 32 }}
           >
@@ -188,26 +200,25 @@ export function HeroSection() {
             </p>
           </div>
 
-          {/* Search Bar */}
+
           <form
             onSubmit={(e) => e.preventDefault()}
             className="flex flex-row items-start m-0"
             style={{
-              width: 581,
-              height: 52,
+              width: 640,
+              height: 60,
               gap: 16,
               padding: 0,
             }}
           >
-            {/* Input container */}
             <div
               className="flex flex-row items-center bg-white"
               style={{
-                width: 461,
-                height: 52,
-                padding: "12px 24px",
-                gap: 8,
-                borderRadius: 24,
+                width: 500,
+                height: 60,
+                padding: "14px 28px",
+                gap: 10,
+                borderRadius: 28,
               }}
             >
               <Search
@@ -222,24 +233,26 @@ export function HeroSection() {
                 id="hero-search"
                 type="search"
                 placeholder="Course, topic, creator"
-                className="flex-1 bg-transparent focus:outline-none text-body-l px-1 m-0 p-0 border-0"
+                className="flex-1 bg-transparent focus:outline-none px-1 m-0 p-0 border-0"
                 style={{
                   color: "#82868E",
-                  height: 29,
+                  fontFamily: "Satoshi, sans-serif",
+                  fontSize: 18,
+                  lineHeight: "160%",
+                  height: "100%",
                 }}
               />
             </div>
 
-            {/* Search button */}
             <button
               type="submit"
               className="flex flex-row justify-center items-center"
               style={{
-                width: 104,
-                height: 46,
+                width: 115,
+                height: 52,
                 padding: "12px 24px",
                 gap: 8,
-                borderRadius: 24,
+                borderRadius: 26,
                 background: "#D4FB20",
                 color: "#242528",
                 border: "none",
@@ -247,8 +260,14 @@ export function HeroSection() {
               }}
             >
               <span
-                className="text-label-l"
-                style={{ width: 56, height: 22, lineHeight: "120%" }}
+                className="m-0 p-0"
+                style={{
+                  fontFamily: "Satoshi, sans-serif",
+                  fontWeight: 500,
+                  fontSize: 18,
+                  lineHeight: "120%",
+                  whiteSpace: "nowrap",
+                }}
               >
                 Search
               </span>
@@ -256,32 +275,6 @@ export function HeroSection() {
           </form>
         </div>
 
-        {/* Lime ring behind person (Ellipse 7) - 1149x1149, 320px #CBFC01 border, top 582 (spec line 297) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute rounded-full"
-          style={{
-            width: 1149,
-            height: 1149,
-            left: "calc(50% - 1149px/2 - 0.5px)",
-            top: 460,
-            boxSizing: "border-box",
-            border: "320px solid #CBFC01",
-            background: "transparent",
-            zIndex: 0,
-          }}
-        />
-        <Ornament
-            src="/Donut.svg"
-            x={8}
-            y={570}
-            width={340}
-            height={340}
-            filter={WHITE_FILTER}
-            transform="rotate(5deg)"
-          />
-
-        {/* Main Hero Image — spec lines 750-759: 578×541 centered (50% - 578/2), top 512 */}
         <div
           className="absolute"
           style={{
@@ -299,28 +292,25 @@ export function HeroSection() {
               alt="Boy AI character"
               fill
               priority
-              sizes="578px"
+              sizes={`${DESIGN_W}px`}
               className="object-cover"
             />
           </div>
         </div>
 
-        {/* Floating Cards - exact coordinates from Hero_Fr spec */}
         <div className="pointer-events-none absolute inset-0">
-          {/* UI/UX Design card - 208×70 at (404, 639) — spec lines 1620-1639 */}
           <div
             className="pointer-events-auto absolute"
             style={{ left: 395, top: 505 }}
           >
             <MiniCourseCard
-              width={200}
-              height={62}
-              padding={12}
-              borderRadius={16}
+              width={220}
+              height={70}
+              padding={14}
+              borderRadius={18}
             />
           </div>
 
-          {/* Learning Progress - 232×131 at (842, 651) — spec lines 770-775 */}
           <div
             className="pointer-events-auto absolute"
             style={{ left: 835, top: 516 }}
@@ -328,7 +318,6 @@ export function HeroSection() {
             <ProgressCard value={55} />
           </div>
 
-          {/* Happy Students - 258×121 at (328, 837) — spec lines 898-901 */}
           <div
             className="pointer-events-auto absolute"
             style={{ left: 312, top: 705 }}
@@ -336,7 +325,7 @@ export function HeroSection() {
             <StudentStatCard />
           </div>
         </div>
-      </div>
+      </ViewportFitFrame>
     </section>
   );
 }

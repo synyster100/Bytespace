@@ -1,8 +1,14 @@
+"use client";
+
+import * as React from "react";
 import type { CSSProperties, ReactNode } from "react";
+
+const MIN_VIEWPORT = 350;
+const MAX_VIEWPORT = 1440;
 
 export function ResponsiveFrame({
   children,
-  designWidth = 1440,
+  designWidth = MAX_VIEWPORT,
   designHeight,
   className,
   style,
@@ -13,23 +19,55 @@ export function ResponsiveFrame({
   className?: string;
   style?: CSSProperties;
 }) {
-  const scaleExpr = `min(1, 100cqw / ${designWidth}px)`;
+  const [containerPx, setContainerPx] = React.useState<number | null>(null);
+  const outerRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    const el = outerRef.current;
+    if (!el) return;
+    const update = () => {
+      const w = el.getBoundingClientRect().width;
+      setContainerPx(w > 0 ? w : null);
+    };
+    update();
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(update);
+      ro.observe(el);
+    }
+    window.addEventListener("resize", update);
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const clamped = React.useMemo(() => {
+    const base = containerPx ?? typeof window !== "undefined" ? Math.min(window.innerWidth, MAX_VIEWPORT) : MAX_VIEWPORT;
+    const used = Math.max(MIN_VIEWPORT, Math.min(base, MAX_VIEWPORT));
+    return used / designWidth;
+  }, [containerPx, designWidth]);
+
+  const outerHeight = Math.round(designHeight * clamped);
 
   return (
     <div
+      ref={outerRef}
       className={["rf-outer", className].filter(Boolean).join(" ")}
       style={{
         ...style,
-        height: `calc(${designHeight}px * ${scaleExpr})`,
+        height: outerHeight,
       }}
     >
       <div
         className="rf-inner"
         style={{
+          width: designWidth,
           height: designHeight,
-          // Inline fallbacks for browsers with flaky cqw CSS support
-          // The globals.css .rf-inner handles the primary scale via 100cqw container-query
-          // but the pattern (cqw calc via custom property) is the same.
+          // Inline JS-computed scale is the source of truth (respects 350px–1440px clamp).
+          // The globals.css `.rf-inner` transform is kept as a SSR-friendly fallback before first paint.
+          transform: `scale(${clamped})`,
+          transformOrigin: "top center",
         }}
       >
         {children}

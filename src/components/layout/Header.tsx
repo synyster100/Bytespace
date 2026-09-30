@@ -18,18 +18,28 @@ export function Header() {
     <header className="relative z-30 bg-brand-blue">
       <div className="grid-bg absolute inset-0 pointer-events-none" aria-hidden />
       <div
-        className="relative"
-        style={{
-          width: "100%",
-          maxWidth: 1440,
-          margin: "0 auto",
-        }}
+        className="relative mx-auto"
+        style={{ width: "100%", maxWidth: 1440 }}
       >
         <div
           className="relative flex items-center w-full"
-          style={{ height: 120, paddingLeft: 122, paddingRight: 120 }}
+          style={{
+            height: "clamp(72px, 10.4vw, 120px)",
+            paddingLeft: "clamp(16px, 8.47vw, 122px)",
+            paddingRight: "clamp(16px, 8.33vw, 120px)",
+          }}
         >
-          <Link href="/" aria-label="ByteSpace Home" className="flex-shrink-0 absolute left-[122px] top-[35px]">
+          <Link
+            href="/"
+            aria-label="ByteSpace Home"
+            className="flex-shrink-0 absolute"
+            style={{
+              left: "clamp(16px, 8.47vw, 122px)",
+              top: "calc(50% - 18.5px)",
+              transform: "scale(min(1, 100vw / 1440))",
+              transformOrigin: "left center",
+            }}
+          >
             <Logo variant="light" />
           </Link>
 
@@ -62,8 +72,8 @@ export function Header() {
           <div
             className="hidden md:flex items-start justify-end absolute"
             style={{
-              right: 120,
-              top: 48,
+              right: "clamp(16px, 8.33vw, 120px)",
+              top: "clamp(24px, 4vw, 48px)",
               gap: 24,
             }}
           >
@@ -90,23 +100,35 @@ export function Header() {
             </button>
           </div>
 
-          <button
-            className="md:hidden inline-flex items-center justify-center ml-auto rounded-pill text-white hover:bg-white/10"
-            style={{ width: 40, height: 40 }}
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Toggle menu"
-            aria-expanded={open}
+          <div
+            className="md:hidden ml-auto inline-flex items-center gap-3"
+            style={{ marginLeft: "auto" }}
           >
-            {open ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
+            <button
+              aria-label="Cart"
+              className="inline-flex items-center justify-center text-white hover:bg-white/10"
+              style={{ width: 40, height: 40 }}
+            >
+              <ShoppingBag style={{ width: 22, height: 22 }} aria-hidden />
+            </button>
+            <button
+              className="inline-flex items-center justify-center rounded-pill text-white hover:bg-white/10"
+              style={{ width: 40, height: 40 }}
+              onClick={() => setOpen((o) => !o)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+            >
+              {open ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
         </div>
 
         {open && (
-          <div className="md:hidden pb-6 pt-2 space-y-4 border-t border-white/10 px-6">
+          <div className="md:hidden pb-6 pt-2 space-y-4 border-t border-white/10" style={{ paddingLeft: 16, paddingRight: 16 }}>
             <nav className="flex flex-col gap-3" aria-label="Mobile">
               {NAV_LINKS.map((link) => (
                 <Link
@@ -120,18 +142,26 @@ export function Header() {
                 </Link>
               ))}
             </nav>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-white/10">
               <Link
                 href="/signin"
                 onClick={() => setOpen(false)}
                 style={{ color: "#F5F5F6" }}
+                className="py-1"
               >
                 Sign In
               </Link>
               <Link
                 href="/signup"
                 onClick={() => setOpen(false)}
-                style={{ color: "#F5F5F6" }}
+                style={{
+                  color: "#242528",
+                  background: "#D4FB20",
+                  borderRadius: 24,
+                  padding: "10px 20px",
+                  fontWeight: 500,
+                }}
+                className="py-1"
               >
                 Join Us
               </Link>

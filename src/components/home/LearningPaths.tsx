@@ -3,15 +3,15 @@ import { learningPaths } from "@/data/learningPaths";
 
 export function LearningPaths() {
   return (
-    <section className="relative py-16 md:py-24 bg-white">
-      <div className="container-x">
+    <section className="relative py-16 md:py-24 bg-white w-full mx-auto">
+      <div className="container-x flex flex-col items-center w-full mx-auto max-w-[1440px]">
         <SectionHeading
           title="Explore Diverse Learning Paths at ByteSpace"
           description="At ByteSpace, we believe in empowering individuals through knowledge. Our diverse range of course topics covers fields, ensuring there's something for everyone. Unlock your potential and explore our carefully curated categories."
-          className="mb-12 md:mb-14"
+          className="mb-12 md:mb-14 w-full"
         />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 w-full">
           {learningPaths.map((lp) => {
             const Icon = lp.icon;
             return (

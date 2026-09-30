@@ -2,7 +2,7 @@
 import { CourseCard } from "@/components/home/CourseCard";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
+import { ViewportFitFrame } from "@/components/ui/ViewportFitFrame";
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
@@ -80,10 +80,10 @@ function SignalIcon() {
 export function GrowthSection() {
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden w-full mx-auto"
       style={{ background: "#FAFAFA", width: "100%" }}
     >
-      <ResponsiveFrame designHeight={1460}>
+      <ViewportFitFrame designWidth={1440} designHeight={1460}>
         {/* Background radial gradients (5 ellipses, each 1137/672 wide, blur 20) */}
         <div
           aria-hidden
@@ -1149,7 +1149,7 @@ export function GrowthSection() {
             </div>
           </div>
         </div>
-      </ResponsiveFrame>
+      </ViewportFitFrame>
     </section>
   );
 }

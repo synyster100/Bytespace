@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ResponsiveFrame } from "@/components/ui/ResponsiveFrame";
+import { ViewportFitFrame } from "@/components/ui/ViewportFitFrame";
 
 const LIME_FILTER =
   "saturate(0) sepia(1) saturate(5.8) hue-rotate(54deg) brightness(1.2) contrast(1.12)";
@@ -63,8 +63,8 @@ function Ornament({
 
 export function CreatorCTA() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "#003BE2" }}>
-      <ResponsiveFrame designHeight={488}>
+    <section className="relative overflow-hidden w-full mx-auto" style={{ background: "#003BE2" }}>
+      <ViewportFitFrame designWidth={1440} designHeight={488}>
         {/* 120px grid lines 0.12 opacity white */}
         <div
           aria-hidden
@@ -208,7 +208,7 @@ export function CreatorCTA() {
             </span>
           </Link>
         </div>
-      </ResponsiveFrame>
+      </ViewportFitFrame>
     </section>
   );
 }

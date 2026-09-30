@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   title: "ByteSpace — Online Courses & Learning Platform",
   description:
     "Get access to hundreds of courses available. Unlock your creativity, gain valuable knowledge, and grow your business with ByteSpace.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

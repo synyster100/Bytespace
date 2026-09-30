@@ -16,9 +16,11 @@ const GRADIENT_404 = {
 
 export function NotFoundPage() {
   return (
-    <div className="relative bg-white" style={{ width: "100%" }}>
-      <div>
+    <>
+      <Header />
+      <main>
         <section
+          id="not-found"
           className="relative overflow-hidden"
           style={{ width: "100%", background: "#003BE2" }}
         >
@@ -29,19 +31,12 @@ export function NotFoundPage() {
             />
 
             <div
-              className="absolute z-10"
-              style={{ width: 1440, height: 120, left: 0, top: 0 }}
-            >
-              <Header />
-            </div>
-
-            <div
               className="absolute"
               style={{
                 width: 920,
                 height: 480,
                 left: "calc(50% - 920px/2)",
-                top: 160,
+                top: 40,
                 fontFamily: "Poppins",
                 fontStyle: "normal",
                 fontWeight: 600,
@@ -61,7 +56,7 @@ export function NotFoundPage() {
                 width: 935,
                 height: 311,
                 left: "calc(50% - 935px/2 + 0.5px)",
-                top: 521,
+                top: 401,
                 padding: 0,
                 gap: 32,
               }}
@@ -144,9 +139,8 @@ export function NotFoundPage() {
             </div>
           </ResponsiveFrame>
         </section>
-
-        <Footer />
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

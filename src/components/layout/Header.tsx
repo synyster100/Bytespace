@@ -36,7 +36,7 @@ export function Header() {
             style={{
               left: "clamp(16px, 8.47vw, 122px)",
               top: "calc(50% - 18.5px)",
-              transform: "scale(min(1, 100vw / 1440))",
+              transform: "scale(clamp(0.2431, 100vw / 1440, 1))",
               transformOrigin: "left center",
             }}
           >
